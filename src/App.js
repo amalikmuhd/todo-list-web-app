@@ -17,17 +17,17 @@ function App() {
   const removeItems = (id) => {
     return setList(list.filter((item) => item.id !== id));
   };
-  const updateItems = (id) => {
-    return setList(
-      list.map((item) => {
-        if (item.id === id) {
-          return (item.title = "Kudus");
-        } else {
-          return item.title;
-        }
-      })
-    );
-  };
+  // const updateItems = (id) => {
+  //   return setList(
+  //     list.map((item) => {
+  //       if (item.id === id) {
+  //         return (item.title = "Kudus");
+  //       } else {
+  //         return item.title;
+  //       }
+  //     })
+  //   );
+  // };
 
   return (
     <div className="App">
