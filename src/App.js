@@ -1,22 +1,24 @@
-import "./App.css";
 import { useState } from "react";
 import { Modal } from "./components/Modal";
+import { createlistAction } from "./store/actions/todoActions";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
 
 let nextId = 0;
 
 function App() {
+  const dispatch = useDispatch();
+
+  const readList = useSelector((state) => state.todoReducers.readList);
   const [title, setTitle] = useState("");
-  const [list, setList] = useState([]);
+  const [id, setId] = useState("");
   const [editMode, setEditMode] = useState(false);
 
   const addItems = () => {
     setTitle("");
-    return setList([{ id: nextId++, title: title }, ...list]);
+    dispatch(createlistAction([{ id: nextId++, title: title }, ...readList]));
   };
 
-  const removeItems = (id) => {
-    return setList(list.filter((item) => item.id !== id));
-  };
   // const updateItems = (id) => {
   //   return setList(
   //     list.map((item) => {
@@ -41,8 +43,8 @@ function App() {
             </button>
           </div>
           <div className="List-items">
-            {list.length > 0 ? (
-              list?.map((item, index) => {
+            {readList.length > 0 ? (
+              readList?.map((item, index) => {
                 return (
                   <ul
                     key={index}
@@ -58,7 +60,13 @@ function App() {
                       <button className="Edit-button" onClick={() => setEditMode(!editMode)}>
                         Edit
                       </button>
-                      <button className="Delete-button" onClick={() => removeItems(item.id)}>
+                      <button
+                        className="Delete-button"
+                        onClick={() => {
+                          setEditMode(!editMode);
+                          setId(item.id);
+                        }}
+                      >
                         Delete
                       </button>
                     </div>
@@ -70,7 +78,7 @@ function App() {
             )}
           </div>
         </div>
-        {editMode && <Modal setOpen={setEditMode} />}
+        {editMode && <Modal setOpen={setEditMode} userId={id} />}
       </header>
     </div>
   );
