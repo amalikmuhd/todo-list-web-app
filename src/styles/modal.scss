@@ -1,0 +1,61 @@
+.Modal-parent-container{
+  width: 100%;
+  position: absolute;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.416);
+  // background-color: black;
+  // opacity: 0.3;
+  display: flex;
+
+  .Modal-container{
+      width: 300px;
+      height: auto;
+      margin: auto;
+      border-radius: 10px;
+      background-color: white;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
+
+      .Button-container{
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        margin: 20px auto 0;
+
+        .cancel-button{
+          width: 100px;
+          height: 45px;
+          border: 1px solid gray;
+          background-color: white;
+          border-radius: 10px;
+          // color: white;
+          font-size: 16px;
+          font-weight: 500;
+
+          &:hover{
+            background-color:rgba(128, 128, 128, 0.181);
+          }
+        }
+        .confirm-button{
+          width: 100px;
+          height: 45px;
+          border: none;
+          background-color: #FF335E;
+          border-radius: 10px;
+          color: white;
+          font-size: 16px;
+          font-weight: 500;
+
+          &:hover{
+            background-color: rgb(210, 1, 1);
+          }
+        }
+      }
+
+  }
+}
